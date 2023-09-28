@@ -7,3 +7,7 @@ Screenshots:
 
 ![sc1](image.png)
 ![sc2](image-1.png)
+
+Links:
+https://maxblaul.github.io/module-5-challenge/
+https://github.com/maxblaul/module-5-challenge/settings/pages

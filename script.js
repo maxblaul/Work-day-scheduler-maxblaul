@@ -5,21 +5,21 @@
 // var $saveButton = document.querySelector("#btn saveBtn col-2 col-md-1");
 // var currentDay = dayjs();
 
-
+var currentHour = dayjs().hour()
 // $(document).ready(function () {
-  
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
-  //
-  // $button.addEventListener("click", function(event) {
-  //   event.preventDefault();
+
+// TODO: Add a listener for click events on the save button. This code should
+// use the id in the containing time-block as a key to save the user input in
+// local storage. HINT: What does `this` reference in the click listener
+// function? How can DOM traversal be used to get the "hour-x" id of the
+// time-block containing the button that was clicked? How might the id be
+// useful when saving the description in local storage?
+//
+// $button.addEventListener("click", function(event) {
+//   event.preventDefault();
 
 
-  
+
 // });
 console.log("working")
 
@@ -28,18 +28,48 @@ $('#1a').text(dayjs().format('MMM D, YYYY'));
 $(".saveBtn").on("click", function () {
 
   var value = $(this).siblings(".description").val();
-  var time = $(this).parent().attr('id')
+  var hours = $(this).parent().attr('id')
   // var calendarContents = {
   //   text: $("textarea").value
   // };
-  console.log(time)
+  console.log(hours)
 
-  localStorage.setItem(time, value);
+  localStorage.setItem(hours, value);
   // renderMessage();
 })
 
 $("#hour-9 .description").val(localStorage.getItem('hour-9'));
 $("#hour-10 .description").val(localStorage.getItem('hour-10'))
+$("#hour-11 .description").val(localStorage.getItem('hour-11'))
+$("#hour-12 .description").val(localStorage.getItem('hour-12'))
+$("#hour-13 .description").val(localStorage.getItem('hour-13'))
+$("#hour-14 .description").val(localStorage.getItem('hour-14'))
+$("#hour-15 .description").val(localStorage.getItem('hour-15'))
+$("#hour-16 .description").val(localStorage.getItem('hour-16'))
+$("#hour-17 .description").val(localStorage.getItem('hour-17'))
+
+function getcurrentHour() {
+  $(".time-block").each(function () {
+    var time = parseInt($(this).attr('id').split('-')[1]);
+    if (time < currentHour) {
+      $(this).addClass("past")
+    }
+   else if(time === currentHour) {
+    $(this).removeClass("past")
+    $(this).addClass("present")
+
+  } else {
+    $(this).removeClass("past")
+    $(this).removeClass("present")
+    $(this).addClass("future")
+
+}
+});
+
+}
+getcurrentHour();
+
+
 
 // TODO: Add code to apply the past, present, or future class to each time
 // block by comparing the id to the current hour. HINTS: How can the id
